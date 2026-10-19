@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff0f6">
+  <title>For My Honey ♡</title>
+  <style>
+    :root {
+      --pink: #f46b9b;
+      --hot: #e94f87;
+      --pale: #fff0f6;
+      --cream: #fffafc;
+      --ink: #63364b;
+      --muted: #9c7184;
+      --line: #f8cbdc;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--ink);
+      font-family: "Trebuchet MS", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 10% 5%, #ffe0ed 0, transparent 30%),
+        radial-gradient(circle at 90% 35%, #ffe8f0 0, transparent 27%),
+        linear-gradient(180deg, #fff8fb, #fff0f6);
+      overflow-x: hidden;
+    }
+    button { font: inherit; cursor: pointer; }
+    .floaties { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .floaty { position: absolute; bottom: -40px; opacity: .4; animation: rise linear infinite; }
+    @keyframes rise { to { transform: translateY(-115vh) rotate(35deg); opacity: 0; } }
+    .wrap { position: relative; z-index: 1; width: min(100% - 28px, 760px); margin: 0 auto; padding: 22px 0 48px; }
+    .topline { text-align: center; color: var(--muted); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; }
+    .hero { text-align: center; padding: 35px 10px 22px; }
+    .eyebrow { display: inline-block; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; font-size: .82rem; color: var(--hot); box-shadow: 0 6px 18px #f6a9c51c; }
+    h1 { font-family: Georgia, serif; font-weight: 500; font-size: clamp(2.5rem, 10vw, 5rem); line-height: .98; letter-spacing: -.045em; margin: 20px 0 14px; }
+    h1 span { color: var(--hot); font-style: italic; }
+    .hero p { max-width: 470px; margin: 0 auto; line-height: 1.7; color: var(--muted); }
+    .heart-mark { display: block; font-size: 2.2rem; margin-top: 18px; animation: beat 1.4s ease-in-out infinite; }
+    @keyframes beat { 50% { transform: scale(1.15); } }
+    .card { background: #ffffffd9; border: 1px solid #f8d5e2; border-radius: 26px; padding: clamp(20px, 5vw, 34px); margin: 18px 0; box-shadow: 0 18px 50px #b9507810; backdrop-filter: blur(8px); }
+    .step { color: var(--hot); font-size: .76rem; text-transform: uppercase; letter-spacing: .15em; font-weight: 800; }
+    h2 { font-family: Georgia, serif; font-size: clamp(1.65rem, 6vw, 2.35rem); line-height: 1.15; font-weight: 500; margin: 12px 0; }
+    .sub { color: var(--muted); line-height: 1.7; margin: 0 0 20px; }
+    .btnrow { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: center; margin-top: 22px; min-height: 54px; }
+    .btn { border: 0; border-radius: 999px; padding: 14px 23px; min-height: 48px; transition: transform .18s, box-shadow .18s; }
+    .btn:active { transform: scale(.97); }
+    .primary { color: white; background: linear-gradient(135deg, #f77ba7, #e94f87); box-shadow: 0 10px 22px #e94f8738; }
+    .primary:hover { box-shadow: 0 13px 28px #e94f8745; transform: translateY(-2px); }
+    .secondary { color: var(--hot); background: #fff5f9; border: 1px solid var(--line); }
+    #noBtn { position: relative; }
+    .hidden { display: none !important; }
+    .progress { height: 6px; border-radius: 99px; background: #ffe5ef; overflow: hidden; margin: 20px 0 8px; }
+    .progress > div { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, #f9a1c0, #e94f87); transition: width .4s; }
+    .question-count { color: var(--muted); font-size: .8rem; text-align: right; }
+    .answers { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+    .answer { text-align: left; color: var(--ink); border: 1px solid var(--line); background: #fff9fc; border-radius: 16px; padding: 15px 16px; }
+    .answer:hover { background: #fff0f6; border-color: #f4a6c2; }
+    .answer.chosen { background: #ffe4ef; border-color: var(--hot); }
+    .memory-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-top: 18px; }
+    .memory { min-height: 140px; border-radius: 18px; border: 1px dashed #eda6bf; background: linear-gradient(145deg,#fff0f6,#fffafd); display:flex; align-items:center; justify-content:center; text-align:center; padding: 12px; overflow: hidden; color: var(--muted); font-size: .9rem; position:relative; }
+    .memory img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; }
+    .memory span { position:relative; z-index:1; }
+    .upload { display: inline-flex; align-items:center; justify-content:center; border:1px solid var(--line); color:var(--hot); background:#fff7fb; padding:10px 14px; border-radius:999px; font-size:.86rem; margin-top:14px; }
+    .upload input { display:none; }
+    .letter { background: #fff8fb; border: 1px solid #f5cada; border-radius: 20px; padding: 22px; line-height: 1.9; white-space: pre-line; }
+    .signature { font-family: Georgia, serif; font-style: italic; font-size: 1.5rem; color: var(--hot); margin-top: 12px; }
+    .tiny { color: var(--muted); font-size: .78rem; line-height:1.6; text-align:center; margin-top:18px; }
+    .confetti { position: fixed; z-index: 5; pointer-events:none; font-size: 22px; animation: pop 1.8s ease-out forwards; }
+    @keyframes pop { from { transform:translateY(0) scale(.6) rotate(0); opacity:1;} to { transform:translateY(-230px) scale(1.3) rotate(70deg); opacity:0;} }
+    footer { text-align:center; padding: 18px 8px 0; color: #b68b9e; font-size:.78rem; }
+    @media (min-width: 600px) { .answers { grid-template-columns: 1fr 1fr; } .memory { min-height: 190px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior:auto !important; transition-duration:.01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="floaties" id="floaties" aria-hidden="true"></div>
+  <main class="wrap">
+    <div class="topline">a tiny corner of the internet, just for you ♡</div>
+    <header class="hero">
+      <div class="eyebrow">✿ made with love, only for you ✿</div>
+      <h1>Hey, <span>My Honey</span> ♡</h1>
+      <p>I made you a little something. It has a few questions, a few smiles, and one very important message at the end.</p>
+      <span class="heart-mark" aria-hidden="true">💗</span>
+    </header>
+
+    <section class="card" id="welcome">
+      <div class="step">first things first</div>
+      <h2>Do you love me? 🥹</h2>
+      <p class="sub">Think carefully, honey… this is a very serious scientific question.</p>
+      <div class="btnrow" id="choiceArea">
+        <button class="btn primary" id="yesBtn">YES, obviously 💗</button>
+        <button class="btn secondary" id="noBtn">No 🙃</button>
+      </div>
+      <p class="tiny" id="noHint">Psst… try the other button. It looks suspiciously cute.</p>
+    </section>
+
+    <section class="card hidden" id="quiz">
+      <div class="step">a tiny love quiz</div>
+      <h2 id="questionTitle">One little question…</h2>
+      <p class="sub" id="questionSub">Choose the answer that feels right 💞</p>
+      <div class="progress"><div id="progressFill"></div></div>
+      <div class="question-count" id="questionCount">Question 1 of 5</div>
+      <div class="answers" id="answers"></div>
+      <p class="tiny" id="answerFeedback" aria-live="polite"></p>
+    </section>
+
+    <section class="card hidden" id="memories">
+      <div class="step">our little memories</div>
+      <h2>My favorite kind of moments 📸</h2>
+      <p class="sub">Add your photos together here. Photos you choose stay in this page while it's open; to show them to her online, add image files to the site and follow the instructions in README.</p>
+      <div class="memory-grid">
+        <div class="memory" id="memory1"><span>✨ A favorite photo</span></div>
+        <div class="memory" id="memory2"><span>💗 A happy memory</span></div>
+        <div class="memory" id="memory3"><span>🌷 A silly moment</span></div>
+        <div class="memory" id="memory4"><span>🫶 My honey & me</span></div>
+      </div>
+      <label class="upload">＋ Choose photos <input type="file" id="photoUpload" accept="image/*" multiple></label>
+      <div class="btnrow"><button class="btn primary" id="toLetter">One last thing… 💌</button></div>
+    </section>
+
+    <section class="card hidden" id="final">
+      <div class="step">open when you need a smile</div>
+      <h2>A little letter for My Honey 💌</h2>
+      <div class="letter" id="letterText">My Honey,
+
+I just wanted to remind you how special you are to me. You make ordinary moments feel a little brighter, and even a simple message from you can make me smile.
+
+I love the little things about us — our conversations, our jokes, and the memories we're still making. I don't need every day to be perfect; I'm just happy I get to share some of them with you.
+
+Thank you for being you, honey. If this little website made you smile even a tiny bit, then it did exactly what I wanted.
+
+You mean a lot to me, and I'm really glad you're in my life. 💗</div>
+      <div class="signature">Always your boy ♡</div>
+      <div class="btnrow"><button class="btn primary" id="heartBtn">Send you a million hearts 💕</button><button class="btn secondary" id="restartBtn">Read it again ↻</button></div>
+      <p class="tiny">Made just for you, My Honey. No template could be as special as the person it's for. ♡</p>
+    </section>
+    <footer>made with a little HTML, a lot of pink, and lots of love ♡</footer>
+  </main>
+
+  <script>
+    // Edit these questions and answers however you like.
+    const questions = [
+      { title: "Who's your favorite person? 👀", sub: "There is definitely a correct answer…", answers: ["You, obviously 💗", "My honey (you) 🥹", "Why would you even ask? 😭"] },
+      { title: "Would you choose us again? 🌷", sub: "Imagine we could start our story all over again.", answers: ["Every single time ♡", "In every universe ✨", "YES, now stop making me emotional"] },
+      { title: "What do I do to your heart? 💓", sub: "Be honest, honey.", answers: ["Make it go doki-doki 💗", "Make me smile at my phone 🙈", "All of the above, silly"] },
+      { title: "Can I keep annoying you? 😌", sub: "Important relationship logistics.", answers: ["Forever, unfortunately 😂", "Only if I can annoy you too", "Deal 🤝💕"] },
+      { title: "One final question… 🥹", sub: "Ready?", answers: ["I love you, dummy 💗", "More than you know 🫶", "Come here, you deserve a hug 🤗"] }
+    ];
+    let questionIndex = 0;
+    const $ = id => document.getElementById(id);
+    const sections = ["quiz", "memories", "final"];
+    function show(id) {
+      sections.forEach(s => $(s).classList.add("hidden"));
+      $(id).classList.remove("hidden");
+      $(id).scrollIntoView({behavior:"smooth", block:"center"});
+    }
+    function makeFloaties() {
+      const box = $("floaties");
+      const symbols = ["♡","♥","✿","💗","·"];
+      for (let i=0; i<18; i++) {
+        const el = document.createElement("span");
+        el.className = "floaty";
+        el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+        el.style.left = Math.random()*100 + "%";
+        el.style.animationDuration = (10+Math.random()*14) + "s";
+        el.style.animationDelay = (-Math.random()*18) + "s";
+        el.style.fontSize = (12+Math.random()*18) + "px";
+        el.style.color = ["#f46b9b","#f7a6c3","#e94f87"][i%3];
+        box.appendChild(el);
+      }
+    }
+    makeFloaties();
+
+    const noBtn = $("noBtn");
+    let noCount = 0;
+    function dodgeNo() {
+      noCount++;
+      const messages = ["Nope, try again 😭", "That button is shy 🙈", "Honey, be serious 😂", "The YES button misses you 💗", "Okay, the button has escaped."];
+      $("noHint").textContent = messages[Math.min(noCount-1, messages.length-1)];
+      const area = $("choiceArea");
+      const maxX = Math.max(0, Math.min(150, area.clientWidth/2 - 45));
+      const maxY = 48;
+      noBtn.style.transform = `translate(${(Math.random()*2-1)*maxX}px, ${(Math.random()*2-1)*maxY}px)`;
+    }
+    noBtn.addEventListener("pointerenter", dodgeNo);
+    noBtn.addEventListener("click", e => { e.preventDefault(); dodgeNo(); });
+    noBtn.addEventListener("touchstart", e => { e.preventDefault(); dodgeNo(); }, {passive:false});
+
+    $("yesBtn").addEventListener("click", () => {
+      $("welcome").classList.add("hidden");
+      questionIndex = 0;
+      renderQuestion();
+      show("quiz");
+      hearts(12);
+    });
+    function renderQuestion() {
+      const q = questions[questionIndex];
+      $("questionTitle").textContent = q.title;
+      $("questionSub").textContent = q.sub;
+      $("questionCount").textContent = `Question ${questionIndex+1} of ${questions.length}`;
+      $("progressFill").style.width = `${(questionIndex/questions.length)*100}%`;
+      $("answerFeedback").textContent = "";
+      const list = $("answers");
+      list.innerHTML = "";
+      q.answers.forEach((answer, i) => {
+        const b = document.createElement("button");
+        b.className = "answer";
+        b.textContent = answer;
+        b.addEventListener("click", () => {
+          [...list.children].forEach(el => el.classList.remove("chosen"));
+          b.classList.add("chosen");
+          $("answerFeedback").textContent = ["I knew it 🥹💗", "That answer gets a thousand kisses (respectfully) 😭", "Correct. You are very smart. ♡"][i%3];
+          setTimeout(() => {
+            questionIndex++;
+            if (questionIndex < questions.length) renderQuestion();
+            else { $("progressFill").style.width = "100%"; show("memories"); hearts(10); }
+          }, 700);
+        });
+        list.appendChild(b);
+      });
+    }
+    $("photoUpload").addEventListener("change", e => {
+      const files = [...e.target.files].slice(0,4);
+      files.forEach((file, i) => {
+        const reader = new FileReader();
+        reader.onload = ev => {
+          const slot = $("memory"+(i+1));
+          slot.innerHTML = "";
+          const img = document.createElement("img");
+          img.src = ev.target.result;
+          img.alt = "Selected memory";
+          slot.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+    $("toLetter").addEventListener("click", () => { show("final"); hearts(18); });
+    function hearts(amount) {
+      const icons = ["💗","💕","💖","♡","💞","🌸"];
+      for (let i=0; i<amount; i++) {
+        const el = document.createElement("span");
+        el.className = "confetti";
+        el.textContent = icons[Math.floor(Math.random()*icons.length)];
+        el.style.left = (5+Math.random()*90)+"vw";
+        el.style.top = (35+Math.random()*55)+"vh";
+        el.style.animationDelay = (Math.random()*.4)+"s";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 2400);
+      }
+    }
+    $("heartBtn").addEventListener("click", () => hearts(35));
+    $("restartBtn").addEventListener("click", () => {
+      $("final").classList.add("hidden");
+      $("welcome").classList.remove("hidden");
+      noBtn.style.transform = "";
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  </script>
+</body>
+</html>
