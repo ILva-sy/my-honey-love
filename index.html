@@ -228,21 +228,7 @@ Tu comptes beaucoup pour moi, et je suis vraiment heureux que tu fasses partie d
         list.appendChild(b);
       });
     }
-    $("photoUpload").addEventListener("change", e => {
-      const files = [...e.target.files].slice(0,4);
-      files.forEach((file, i) => {
-        const reader = new FileReader();
-        reader.onload = ev => {
-          const slot = $("memory"+(i+1));
-          slot.innerHTML = "";
-          const img = document.createElement("img");
-          img.src = ev.target.result;
-          img.alt = "Selected memory";
-          slot.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      });
-    });
+   
     $("toLetter").addEventListener("click", () => { show("final"); hearts(18); });
     function hearts(amount) {
       const icons = ["💗","💕","💖","♡","💞","🌸"];
